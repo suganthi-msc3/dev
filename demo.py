@@ -51,6 +51,25 @@ def login():
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
+@app.route("/profile", methods=['GET', 'POST'])
+def profile():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Profile created for {form.username.data}!', 'success')
+        return redirect(url_for('profile'))
+    return render_template('profile.html', title='Profile', form=form)
+
+@app.route("/notifications")
+def notifications():
+
+    return render_template('notifications.html', title='notifications')
+
+
+@app.route("/connections")
+def connections():
+
+    return render_template('connections.html', title='connections')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
