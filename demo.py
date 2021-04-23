@@ -23,12 +23,12 @@ posts = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html',title='home', posts=posts)
+    return render_template('home.html',title='home', posts=posts,inside='true')
 
 
 @app.route("/about")
 def about():
-    return render_template('about.html', title='About')
+    return render_template('about.html', title='About',inside='true')
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -37,7 +37,7 @@ def register():
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register',inside='true', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -57,18 +57,18 @@ def profile():
     if form.validate_on_submit():
         flash(f'Profile created for {form.username.data}!', 'success')
         return redirect(url_for('profile'))
-    return render_template('profile.html', title='Profile', form=form)
+    return render_template('profile.html', title='Profile',inside='true', form=form)
 
 @app.route("/notifications")
 def notifications():
 
-    return render_template('notifications.html', title='notifications')
+    return render_template('notifications.html', title='notifications',inside='true')
 
 
 @app.route("/connections")
 def connections():
 
-    return render_template('connections.html', title='connections')
+    return render_template('connections.html', title='connections',inside='true')
 
 
 if __name__ == '__main__':
